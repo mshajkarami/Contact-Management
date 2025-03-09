@@ -5,18 +5,14 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "contacts_table")
-class ContactsEntity(contacts: Contacts) {
-
-
-
-    @ColumnInfo(name = "contact_id")
-    @PrimaryKey(autoGenerate = true)
-    private val id: Int = contacts.id
-
-    @ColumnInfo(name = "contact_name")
-    private val name: String = contacts.name
-
-    @ColumnInfo(name = "contact_email")
-    private val email: String = contacts.email
-
+data class ContactsEntity(
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @ColumnInfo(name = "contact_name") val name: String,
+    @ColumnInfo(name = "contact_email") val email: String
+) {
+    constructor(contact: Contact) : this(
+        id = contact.id,
+        name = contact.name,
+        email = contact.email
+    )
 }
