@@ -1,5 +1,6 @@
 package ir.hajkarami.contactmanagement
 
+import android.app.Application
 import kotlinx.coroutines.flow.Flow
 
 class ContactsRepository(private val contactsDAO: ContactsDAO) {

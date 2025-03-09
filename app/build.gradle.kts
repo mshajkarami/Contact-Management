@@ -41,6 +41,9 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     annotationProcessor(libs.androidx.room.compiler)
 
+    // add lifecycle-viewmodel
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
