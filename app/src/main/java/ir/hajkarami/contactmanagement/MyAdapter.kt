@@ -1,29 +1,41 @@
 package ir.hajkarami.contactmanagement
 
-import android.provider.ContactsContract.Contacts
+import android.annotation.SuppressLint
+import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import ir.hajkarami.contactmanagement.databinding.ContactListItemBinding
 
-class MyAdapter() :
+class MyAdapter(private var contacts: List<Contact>) :
     RecyclerView.Adapter<MyAdapter.ContactViewHolder>() {
 
-
-
-    class ContactViewHolder(private val binding: ContactListItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
-        TODO("Not yet implemented")
-    }
-
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        val contactListItemBinding: ContactListItemBinding =
+            DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                R.layout.contact_list_item,
+                parent,
+                false
+            )
+        return ContactViewHolder(contactListItemBinding)
     }
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val contact = contacts[position]
+        holder.contactListItemBinding.contact = contact
     }
+
+    override fun getItemCount(): Int = contacts.size
+
+    fun setContacts(newContacts: List<Contact>) {
+        contacts = newContacts
+        notifyDataSetChanged()
+    }
+
+
+
+    class ContactViewHolder(val contactListItemBinding: ContactListItemBinding) :
+        RecyclerView.ViewHolder(contactListItemBinding.root)
 
 }
