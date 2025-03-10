@@ -5,17 +5,20 @@ import android.content.Intent
 import android.view.View
 import android.widget.Toast
 
-class AddNewContactClickHandler(val contact: Contact, val context: Context,val viewModel: MyViewModel) {
+class AddNewContactClickHandler(
+    private val contact: Contact,
+    private val context: Context,
+    private val viewModel: MyViewModel
+) {
     fun onSubmitClicked(view: View) {
-
-        if (contact.name == null || contact.email == null)
-            Toast.makeText(context, "Fields Cannot be empty", Toast.LENGTH_LONG).show()
-        else {
-            val intent = Intent(context, MainActivity::class.java)
-            intent.putExtra("Name", contact.name)
-            intent.putExtra("Email", contact.email)
-            val c = Contact(contact.id, contact.name, contact.email)
-            viewModel.addNewContact(c)
+        if (contact.name.isNullOrBlank() || contact.email.isNullOrBlank()) {
+            Toast.makeText(context, context.getString(R.string.empty_fields_error), Toast.LENGTH_SHORT).show()
+        } else {
+            val intent = Intent(context, MainActivity::class.java).apply {
+                putExtra("Name", contact.name)
+                putExtra("Email", contact.email)
+            }
+            viewModel.addNewContact(contact)
             context.startActivity(intent)
         }
     }

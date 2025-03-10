@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Contact management</string>
+    <string name="empty_fields_error">This field not Must be Empty</string>
 </resources>
