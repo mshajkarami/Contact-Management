@@ -7,7 +7,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import ir.hajkarami.contactmanagement.databinding.ContactListItemBinding
 
-class MyAdapter(private var contacts: List<Contact>) :
+class MyAdapter(
+    private var contacts: ArrayList<Contact>
+) :
     RecyclerView.Adapter<MyAdapter.ContactViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
@@ -28,7 +30,7 @@ class MyAdapter(private var contacts: List<Contact>) :
 
     override fun getItemCount(): Int = contacts.size
 
-    fun setContacts(newContacts: List<Contact>) {
+    fun setContacts(newContacts: ArrayList<Contact>) {
         contacts = newContacts
         notifyDataSetChanged()
     }
