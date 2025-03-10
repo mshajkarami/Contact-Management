@@ -30,10 +30,10 @@ class MainActivity : AppCompatActivity() {
         mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         mainBinding.apply {
             this.clickHandler = ActivityClickHandler(this@MainActivity)
-         }
+        }
 
         // RecyclerView
-        val recyclerView : RecyclerView = mainBinding.recyclerView
+        val recyclerView: RecyclerView = mainBinding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
 
@@ -47,19 +47,17 @@ class MainActivity : AppCompatActivity() {
         contactDatabase = ContactsDatabase.getInstance(this)
 
         //ViewModel
-        val viewModel : MyViewModel = ViewModelProvider(this)[MyViewModel::class.java]
+        val viewModel: MyViewModel = ViewModelProvider(this)[MyViewModel::class.java]
 
         // insert data to database
         viewModel.addNewContact(Contact(1, "ali", "ali@gmail.com"))
 
         // Loading the Data from Room DB
         lifecycleScope.launch {
-            viewModel.allContact.collect {contacts ->
+            viewModel.allContact.collect { contacts ->
                 adapter?.setContacts(ArrayList(contacts))
             }
         }
-
-
 
     }
 }
