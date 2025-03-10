@@ -7,7 +7,7 @@ import android.view.View
 class ActivityClickHandler (private val context: Context) {
 
     fun onFABClicked(view: View){
-        val intent = Intent(view.context, NewNoteActivity::class.java)
+        val intent = Intent(view.context, AddNewContactActivity::class.java)
         context.startActivity(intent)
     }
 }
